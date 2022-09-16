@@ -23,16 +23,16 @@ python3 main.py -d [path/to/data/dir] -r [column rank delimiter] -o [path/to/out
 ```
 
 ### Flags
-| Flag | Description                                                                                                              |   |   |   |
-|------|--------------------------------------------------------------------------------------------------------------------------|---|---|---|
-| -d   | Path to input data directory. Should be in CSV format.                                                                   |   |   |   |
-| -p   | The exp value to use. You can also specify inf for infinity.                                                             |   |   |   |
-| -o   | Name and path to output relative to location where the script is being executed.                                         |   |   |   |
-| -f   | If you data directory has more than one set of CSV files, you can input a regex expression to filter the filenames.      |   |   |   |
-| -l   | Taxonomic rank. Use "g" for genus and "s" for species, etc. (default: "s")                                               |   |   |   |
-| -r   | Regex to split the taxonomy ranks in the columns. Default=",".                                                           |   |   |   |
-| -ec  | Extra cleaning of columns if your columns contain _V# as a suffix. (optional)                                            |   |   |   |
-| -t   | If your data is transposed (i.e., row labels are sample ID and column labels are taxonomy), this will fix it. (optional) |   |   |   |
+| Flag | Description                                                                                                              |
+|------|--------------------------------------------------------------------------------------------------------------------------|
+| -d   | Path to input data directory. Should be in CSV format.                                                                   |
+| -p   | The exp value to use. You can also specify inf for infinity.                                                             |
+| -o   | Name and path to output relative to location where the script is being executed.                                         |
+| -f   | If you data directory has more than one set of CSV files, you can input a regex expression to filter the filenames.      |
+| -l   | Taxonomic rank. Use "g" for genus and "s" for species, etc. (default: "s")                                               |
+| -r   | Regex to split the taxonomy ranks in the columns. Default=",".                                                           |
+| -ec  | Extra cleaning of columns if your columns contain _V# as a suffix. (optional)                                            |
+| -t   | If your data is transposed (i.e., row labels are sample ID and column labels are taxonomy), this will fix it. (optional) |
 
 ## Examples
 
