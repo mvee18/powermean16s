@@ -6,8 +6,6 @@ from scipy.stats import pmean
 import argparse
 
 taxonomic_levels = {"k": 0, "p": 1, "c": 2, "o": 3, "f": 4, "g": 5, "s": 6}
-silva_dir = '/Volumes/TBHD/Bioinformatics/ion_torrent_qiime2_methods_manuscript/Classified_Tax_Counts_QIIME2_CSV_Files/Cutprimers/Species'
-set_2_dir = '/Volumes/TBHD_share/multi_v_regions_tables/FirstTestSet_stool/data'
 
 
 def fix_index(df: pd.DataFrame, index_col: int) -> pd.DataFrame:
