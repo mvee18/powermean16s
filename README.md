@@ -19,7 +19,7 @@ For the best results, ensure that your data is in the format specified in tests/
 ### Usage:
 
 ```
-python3 main.py -d [path/to/data/dir] -r [column rank delimiter] -o [path/to/output/file.csv] -l [rank (e.g., "s")]
+python3 main.py -d [path/to/data/dir] -r [column rank delimiter] -o [path/to/output/file.csv] -l [rank (e.g., "g")]
 ```
 
 ### Flags
@@ -39,10 +39,10 @@ python3 main.py -d [path/to/data/dir] -r [column rank delimiter] -o [path/to/out
 To illustrate usage on the test data, run the following command.
 
 ```
-python3 main.py -d tests/example_data -p 1 -r "," -o test_output.csv -l s -f "v\d"
+python3 main.py -d tests/example_data -p 1 -r "," -o test_output.csv -l g -f "v\d"
 ```
 
-This will run the script on the data in `tests/example_data` on CSV files matching the `v\d` regex pattern. It will perform the splitting of taxonomic rank on `,`, then sort by at the species level. Finally, it will perform the power mean at `exp=1` and make a new file in the top-level directory called `test_output.csv`.
+This will run the script on the data in `tests/example_data` on CSV files matching the `v\d` regex pattern. It will perform the splitting of taxonomic rank on a "," and then sort by the genus level. Finally, it will perform the power mean at `exp=1` and make a new file in the top-level directory called `test_output.csv`.
 
 ## Tests
 If you want to be sure it is working, run the test with the following command:
@@ -50,4 +50,4 @@ If you want to be sure it is working, run the test with the following command:
 ```
 pytest
 ```
-
+In the `tests` directory, you will find `ex1`, which is two V regions with multiple samples, and `ex2` which is several V regions with one sample. 

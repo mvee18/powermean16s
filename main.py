@@ -76,8 +76,11 @@ def clean_csv(root, f, delimiter_pattern=";", transpose=False, index_col=0, taxo
     This function will clean the csv file by fixing the index, cleaning the columns, and then returning the cleaned dataframe. 
     If it needs to be transposed, it will be transposed.
     """
-    print(f)
-    df = pd.read_csv(os.path.join(root, f))
+    path = os.path.join(root, f)
+    if path.endswith(".csv"):
+        df = pd.read_csv(os.path.join(root, f))
+    elif path.endswith(".tsv"):
+        df = pd.read_csv(os.path.join(root, f), sep="\t")
 
     df = fix_index(df, index_col)
 
@@ -123,8 +126,8 @@ def parse_args():
                         help="extra cleaning of columns ending with _V1, _V2, etc.")
     parser.add_argument("-t", "--transpose",
                         help="if the taxonomy is the column headers, use this flag. See tests/example_data for data as row names.")
-    parser.add_argument("-l", "--taxon-level", type=str, default="s",
-                        help="the taxonomic level to use for the data. options: k, p, c, o, f, g, s. default: s")
+    parser.add_argument("-l", "--taxon-level", type=str, default="g",
+                        help="the taxonomic level to use for the data. options: k, p, c, o, f, g, s. default: g")
     return parser.parse_args()
 
 
@@ -158,7 +161,7 @@ def concat_arrays(arrays: list, power: int):
 def main():
     args = parse_args()
 
-    data, power, regex, output, file_id, extra_clean = args.data, args.power, args.regex, args.output, args.file_id, args.extra_clean
+    data, power, regex, output, file_id, extra_clean, rank = args.data, args.power, args.regex, args.output, args.file_id, args.extra_clean, args.taxon_level
 
     power = coerce_power(power)
 
@@ -167,8 +170,9 @@ def main():
     for root, dirs, file in os.walk(data):
         for f in file:
             if re.search(file_id, f):
+                print(f)
                 cleaned_dfs.append(clean_csv(root, f, delimiter_pattern=regex,
-                                             transpose=False, index_col=1, taxon_level="g"))
+                                             transpose=False, index_col=1, taxon_level=rank))
     if extra_clean:
         extra_clean = [extra_column_cleaning(df) for df in cleaned_dfs]
         final = concat_arrays(extra_clean, power)
